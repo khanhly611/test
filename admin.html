@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Trang quản lý</title>
+
+<style>
+/* RESET */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f3ff;
+}
+
+/* ===== HEADER ===== */
+.header {
+    height: 60px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 28px;
+    color:#667eea;
+}
+
+.logout {
+    position: absolute;
+    right: 20px;
+    padding: 8px 18px;
+    background: linear-gradient(180deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+}
+
+.logout:hover {
+    background: #764ba2;
+}
+
+/* ===== LAYOUT ===== */
+.container {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 270px;
+    background: linear-gradient(180deg, #667eea, #764ba2);
+    color: white;
+    padding-top: 10px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* UC CHA */
+.menu-btn {
+    width: 100%;
+    padding: 14px 20px;
+    background: none;
+    border: none;
+    color: white;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.menu-btn:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+/* UC CON */
+.submenu {
+    display: none;
+    background: rgba(255,255,255,0.12);
+}
+
+.submenu a {
+    display: block;
+    padding: 10px 40px;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+}
+
+.submenu a:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+/* ===== CONTENT ===== */
+.content {
+    flex: 1;
+    padding: 25px;
+}
+
+.content h2 {
+    margin-top: 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+    <h1>TRANG QUẢN LÝ</h1>
+    <button class="logout" onclick="logout()">Đăng xuất</button>
+</div>
+
+<!-- ===== MAIN ===== -->
+<div class="container">
+
+    <!-- ===== SIDEBAR ===== -->
+    <div class="sidebar">
+
+        <!-- UC: Quản lý nhân sự -->
+        <button class="menu-btn" onclick="toggleMenu('ns')">
+            Quản lý nhân sự
+        </button>
+        <div class="submenu" id="ns">
+            <a href="#">Thêm nhân viên</a>
+            <a href="#">Cập nhật thông tin</a>
+            <a href="#">Xóa nhân viên</a>
+            <a href="#">Phân quyền</a>
+            <a href="#">Xem danh sách</a>
+        </div>
+
+        <!-- UC: Báo cáo -->
+        <button class="menu-btn" onclick="toggleMenu('bc')">
+            Báo cáo – Thống kê
+        </button>
+        <div class="submenu" id="bc">
+            <a href="#">Báo cáo doanh thu</a>
+            <a href="#">Báo cáo tồn kho</a>
+            <a href="#">Hiệu suất nhân viên</a>
+        </div>
+
+        <!-- UC: Bảng lương -->
+        <button class="menu-btn" onclick="toggleMenu('luong')">
+            Bảng lương
+        </button>
+        <div class="submenu" id="luong">
+            <a href="#">Cập nhật hệ số lương</a>
+            <a href="#">Tính lương</a>
+            <a href="#">Danh sách bảng lương</a>
+        </div>
+
+        <!-- UC: Chấm công -->
+        <button class="menu-btn" onclick="toggleMenu('cc')">
+            Chấm công & ngày công
+        </button>
+        <div class="submenu" id="cc">
+            <a href="#">Ca làm việc</a>
+            <a href="#">Nghỉ phép – Đơn từ</a>
+            <a href="#">Ghi nhận ngày công</a>
+            <a href="#">Xuất dữ liệu chấm công</a>
+        </div>
+
+    </div>
+
+    <!-- ===== CONTENT ===== -->
+    <div class="content">
+        <h2>Chào mừng Quản lý</h2>
+        <p>Vui lòng chọn chức năng theo Use Case ở menu bên trái.</p>
+    </div>
+
+</div>
+
+<!-- ===== SCRIPT ===== -->
+<script>
+function toggleMenu(id) {
+    const menu = document.getElementById(id);
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+}
+
+function logout() {
+    alert("Bạn chắc chưa???");
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

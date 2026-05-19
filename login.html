@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập hệ thống</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            background: #fff;
+            width: 380px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .roles {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .role {
+            width: 100px;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            color: #555;
+            border: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        .role i {
+            font-size: 26px;
+            margin-bottom: 6px;
+        }
+
+        .role.active {
+            border-color: #667eea;
+            background: #f0f3ff;
+            color: #667eea;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            background: #667eea;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #5563d6;
+        }
+
+        .note {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-box">
+    <h2>Đăng nhập hệ thống siêu thị</h2>
+
+    <div class="roles">
+        <div class="role active" data-role="Quản lý">
+            <div class="emoji">&#128188</div>
+            <div>Quản lý</div>
+        </div>
+        <div class="role" data-role="Nhân viên bán hàng">
+            <div class="emoji">&#128178</div>
+            <div>Bán hàng</div>
+        </div>
+        <div class="role" data-role="Thủ kho">
+            <div class="emoji">&#128230</div>
+            <div>Thủ kho</div>
+        </div>
+    </div>
+
+    <input type="text" id="username" placeholder="Tên đăng nhập">
+    <input type="password" id="password" placeholder="Mật khẩu">
+
+    <button onclick="login()">Đăng nhập</button>
+
+    <div class="note" id="note"></div>
+</div>
+
+<script>
+    let selectedRole = "Quản lý";
+
+    const accounts = {
+        "Quản lý": { username: "admin", password: "123", page: "admin.html" },
+        "Nhân viên bán hàng": { username: "sale", password: "123", page: "banhang.html" },
+        "Thủ kho": { username: "kho", password: "123", page: "thukho.html" }
+    };
+
+    document.querySelectorAll(".role").forEach(role => {
+        role.onclick = () => {
+            document.querySelectorAll(".role").forEach(r => r.classList.remove("active"));
+            role.classList.add("active");
+            selectedRole = role.dataset.role;
+        };
+    });
+
+    function login() {
+        const user = document.getElementById("username").value;
+        const pass = document.getElementById("password").value;
+        const note = document.getElementById("note");
+
+        const acc = accounts[selectedRole];
+
+        if (user === acc.username && pass === acc.password) {
+            note.style.color = "green";
+            note.innerHTML = "Chúc mừng đến với bình nguyên vô tận!";
+            setTimeout(() => {
+                window.location.href = acc.page;
+            }, 800);
+        } else {
+            note.style.color = "red";
+            note.innerHTML = "Sai tài khoản hoặc mật khẩu!";
+        }
+    }
+</script>
+
+</body>
+</html>
